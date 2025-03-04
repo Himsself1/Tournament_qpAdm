@@ -301,7 +301,7 @@ write.table(
 # ** Plotting
 
 scores_heatmap <- ggplot( results_versus, aes( x = left, y = exclude, fill = score) )
-scores_heatmap <- scores_heatmap + geom_tile( color = white, lwd = 0.4, linetype = 1 )
+scores_heatmap <- scores_heatmap + geom_tile( color = "white", lwd = 0.4, linetype = 1 )
 scores_heatmap <- scores_heatmap + theme(
     axis.title.x = element_blank(),
     axis.title.y = element_blank()
