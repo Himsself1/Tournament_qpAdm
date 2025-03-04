@@ -304,7 +304,8 @@ scores_heatmap <- ggplot( results_versus, aes( x = left, y = exclude, fill = sco
 scores_heatmap <- scores_heatmap + geom_tile( color = "white", lwd = 0.4, linetype = 1 )
 scores_heatmap <- scores_heatmap + theme(
     axis.title.x = element_blank(),
-    axis.title.y = element_blank()
+    axis.title.y = element_blank(),
+    axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1)
 )
 scores_heatmap <- scores_heatmap + scale_x_discrete(drop = FALSE)
 scores_heatmap <- scores_heatmap + scale_y_discrete(drop = FALSE)
