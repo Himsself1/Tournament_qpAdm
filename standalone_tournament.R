@@ -310,6 +310,6 @@ scores_heatmap <- scores_heatmap + theme(
 scores_heatmap <- scores_heatmap + scale_x_discrete(drop = FALSE)
 scores_heatmap <- scores_heatmap + scale_y_discrete(drop = FALSE)
 
-CairoPDF( paste0(c(out_dir_for_stats, "/", input_params$run_name, "_scores.tsv"), collapse = ''))
+CairoPDF( paste0(c(out_dir_for_stats, "/", input_params$run_name, "_scores.pdf"), collapse = ''))
 scores_heatmap
 dev.off()
