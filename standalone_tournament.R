@@ -38,7 +38,7 @@ if( file.exists( yaml_input ) ){
 
 if( !file.exists( input_params$file_with_ind_names ) ){
   cat(sprintf( "File %s does not exist. \n", input_params$file_with_ind_names ))
-  stop( "Stop 1" )
+  stop("Stop 1")
 }else{
   ind_names <- read.table(input_params$file_with_ind_names)[,1]
 }
@@ -196,7 +196,7 @@ data_v1 <- data.frame(
 
 write.table(
   x = data_v1, quote = FALSE, sep = '\t',
-  file = paste0(c(out_dir_for_stats, "all_models.tsv"), collapse = '')
+  file = paste0(c(out_dir_for_stats, "/", input_params$run_name, "_all_models.tsv"), collapse = '')
 )
 
 # ** Preparing scoring functions
@@ -293,4 +293,22 @@ names(results_versus) <- c("left", "exclude", "score")
 results_versus$left <- factor(results_versus$left, levels = competing_pops)
 results_versus$exclude <- factor(results_versus$exclude, levels = competing_pops)
 
+write.table(
+  x = results_versus, sep = '\t', quote = F,
+  file = paste0(c(out_dir_for_stats, "/", input_params$run_name, "_scores.tsv"), collapse = '')
+)
+
 # ** Plotting
+
+scores_heatmap <- ggplot( results_versus, aes( x = left, y = exclude, fill = score) )
+scores_heatmap <- scores_heatmap + geom_tile( color = white, lwd = 0.4, linetype = 1 )
+scores_heatmap <- scores_heatmap + theme(
+    axis.title.x = element_blank(),
+    axis.title.y = element_blank()
+)
+scores_heatmap <- scores_heatmap + scale_x_discrete(drop = FALSE)
+scores_heatmap <- scores_heatmap + scale_y_discrete(drop = FALSE)
+
+CairoPDF( paste0(c(out_dir_for_stats, "/", input_params$run_name, "_scores.tsv"), collapse = ''))
+scores_heatmap
+dev.off()
