@@ -1,0 +1,11 @@
+---
+path_to_eigenstrat: "" # Full path to the folder containing EIGENSTRAT dataset
+prefix: "" # EIGENSTRAT prefix
+file_with_ind_names: "" # File with names of the samples to be tested. MUST MATCH the EIGENSTRAT names.
+file_with_pop_names: "" # Needs to be of the same length as `file_with_ind_names`. Assigns each sample to a population. Population names DO NOT NEED TO MATCH EIGENSTRAT notation.
+target_pop_name: "" # Which population is the target? NEEDS TO MATCH `file_with_pop_names`
+competing_pops: [""] # Array. MUST MATCH `file_with_pop_names`
+other_left_pops: [""] # Array. MUST MATCH `file_with_pop_names`
+## Populations that are in `file_with_pop_names` but not in `competing_pops` and other_left_pops will be treated as right populations.
+output_folder: ""
+run_name: "" # Specify a name for the run.
