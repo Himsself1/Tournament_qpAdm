@@ -161,7 +161,7 @@ if( input_params$all_snps == TRUE ){
   all_qpadms <- qpadm_multi(
     data = input_prefix,
     models = qp_models,
-    all_snps = input_params$all_snps
+    allsnps = input_params$all_snps
   )
 } else {
 

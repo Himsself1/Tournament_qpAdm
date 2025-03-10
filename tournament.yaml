@@ -2,11 +2,11 @@
 path_to_eigenstrat: "" # Full path to the folder containing EIGENSTRAT dataset
 prefix: "" # EIGENSTRAT prefix
 file_with_ind_names: "" # File with names of the samples to be tested. MUST MATCH the EIGENSTRAT names. One name per line.
-file_with_pop_names: "" # Needs to be of the same length as `file_with_ind_names`. Assigns each sample to a population. One name per line. Population names DO NOT NEED TO MATCH EIGENSTRAT notation.
+file_with_pop_names: "" # Needs to be of the same length as `file_with_ind_names`. Assigns each sample to a population. One name per line. Population names DO NOT NEED TO MATCH EIGENSTRAT notation UNLESS all_snps = TRUE.
 target_pop_name: "" # Which population is the target? Name NEEDS TO MATCH `file_with_pop_names`
 competing_pops: [""] # Array. Names MUST MATCH `file_with_pop_names`
 other_left_pops: [""] # Array. Names MUST MATCH `file_with_pop_names`
 ## Populations that are in `file_with_pop_names` but not in `competing_pops` and other_left_pops will be treated as right populations.
 output_folder: "" # Path to output folder. Folders that do not exist will be created.
 run_name: "" # Specify a name for the run.
-all_snps: "" # TRUE/FASLE See parameter allsnps in qpAdm. If TRUE, qpadm_multi will use f4 statistics to perform the calculation.
+all_snps: "" # TRUE/FASLE See parameter allsnps in qpAdm. If TRUE, qpadm_multi will use f4 statistics to perform the calculation. If all_snps = TRUE, population names NEED TO MATCH the .ind file
