@@ -156,18 +156,27 @@ qp_models <- tibble(
 
 # * Runnign qpAdm
 
-f2_blocks_for_all_pops <- f2_from_geno(
-  pref = input_prefix,
-  pops = pop_names,
-  inds = ind_names,
-  adjust_pseudohaploid = FALSE  
-)
+## If all_snps = TRUE then use prefix in order to calculate models.
+if( input_params$all_snps == TRUE ){
+  all_qpadms <- qpadm_multi(
+    data = input_prefix,
+    models = qp_models,
+    all_snps = input_params$all_snps
+  )
+} else {
 
-all_qpadms <- qpadm_multi(
-  data = f2_blocks_for_all_pops,
-  models = qp_models
+  f2_blocks_for_all_pops <- f2_from_geno(
+    pref = input_prefix,
+    pops = pop_names,
+    inds = ind_names,
+    adjust_pseudohaploid = FALSE  
   )
 
+  all_qpadms <- qpadm_multi(
+    data = f2_blocks_for_all_pops,
+    models = qp_models
+  )
+}
 # ** Data processing
 
 # *** Information for all models
