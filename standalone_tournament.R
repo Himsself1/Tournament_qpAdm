@@ -141,8 +141,8 @@ for(i in 1:length(competing_pops)){
     if( i == j ) { next }
     left_all <- c(left_all, list(c(competing_pops[i], other_left_pops)))
     left_all <- c(left_all, list(c(competing_pops[i], other_left_pops)))
-    right_all <- c(right_all, list(c(competing_pops[-i], always_right)))
-    right_all <- c(right_all, list(c(competing_pops[c(-i,-j)], always_right)))
+    right_all <- c(right_all, list(c(competing_pops[j], always_right)))
+    right_all <- c(right_all, list(c(always_right)))
     exclude <- c(exclude, c("None", competing_pops[j]))
   }
 }
