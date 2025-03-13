@@ -23,7 +23,8 @@ library(admixtools)
 args<-commandArgs(TRUE)
 yaml_input <- args[1]
 
-## yaml_input <- "./qpadm_inference/apoikia_tournament_example.yaml"
+## yaml_input <- "./apoikia_tournament_example.yaml"
+## yaml_input <- "./apoikia_tournament_example_v2.yaml"
 
 # ** Verify arguments
 
@@ -319,6 +320,6 @@ scores_heatmap <- scores_heatmap + theme(
 scores_heatmap <- scores_heatmap + scale_x_discrete(drop = FALSE)
 scores_heatmap <- scores_heatmap + scale_y_discrete(drop = FALSE)
 
-CairoPDF( paste0(c(out_dir_for_stats, "/", input_params$run_name, "_scores.pdf"), collapse = ''))
+CairoPDF( paste0(c(out_dir_for_plots, "/", input_params$run_name, "_scores.pdf"), collapse = ''))
 scores_heatmap
 dev.off()

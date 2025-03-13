@@ -9,4 +9,4 @@ other_left_pops: [""] # Array. Names MUST MATCH `file_with_pop_names`
 ## Populations that are in `file_with_pop_names` but not in `competing_pops` and other_left_pops will be treated as right populations.
 output_folder: "" # Path to output folder. Folders that do not exist will be created.
 run_name: "" # Specify a name for the run.
-all_snps: "" # TRUE/FASLE See parameter allsnps in qpAdm. If TRUE, qpadm_multi will use f4 statistics to perform the calculation. If all_snps = TRUE, population names NEED TO MATCH the .ind file
+all_snps: # TRUE/FASLE See parameter allsnps in qpAdm. If TRUE, qpadm_multi will use f4 statistics to perform the calculation. If all_snps = TRUE, population names NEED TO MATCH the .ind file
