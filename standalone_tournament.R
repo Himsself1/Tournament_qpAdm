@@ -14,9 +14,10 @@ for (i in list_of_packages) {
   }
 }
 
-devtools::install_github("uqrmaie1/admixtools")
-library(admixtools)
-
+if(!require("admixtools", character.only = TRUE)) {
+  pak::pak("uqrmaie1/admixtools")
+}
+read_table2 <- readr::read_table ## Needed in some versions of admixtools
 
 # * Command line arguments
 
