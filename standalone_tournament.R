@@ -141,7 +141,13 @@ if( sum(other_left_pops %in% right_pops) > 0 ){
   cat(sprintf("Warning: Removed populations: %s from other_left populations. \n",
               other_left_pops[other_left_pops %in% right_pops]))
   other_left_pops <- setdiff(other_left_pops, right_pops)
-  
+}
+
+# *** Other parameters
+
+if(is.null(input_params$adjust_pseudohaploid)) {
+  cat(sprintf("Warning: adjust_pseudohaploid was not specified. Assumming adjust_pseudohaploid = TRUE \n"))
+  input_params$adjust_pseudohaploid <- TRUE
 }
 
 # *** Create output folder
@@ -193,7 +199,8 @@ if( input_params$all_snps == TRUE ){
   all_qpadms <- qpadm_multi(
     data = input_prefix,
     models = qp_models,
-    allsnps = input_params$all_snps
+    allsnps = input_params$all_snps,
+    adjust_pseudohaploid = input_params$adjust_pseudohaploid
   )
 } else {
 
@@ -201,7 +208,7 @@ if( input_params$all_snps == TRUE ){
     pref = input_prefix,
     pops = pop_names,
     inds = ind_names,
-    adjust_pseudohaploid = FALSE  
+    adjust_pseudohaploid = input_params$adjust_pseudohaploid
   )
 
   all_qpadms <- qpadm_multi(
