@@ -6,7 +6,7 @@ file_with_pop_names: "" # Needs to be of the same length as `file_with_ind_names
 target_pop_name: "" # Which population is the target? Name NEEDS TO MATCH `file_with_pop_names`
 competing_pops: [""] # Array. Names MUST MATCH `file_with_pop_names`
 other_left_pops: [""] # Array. Names MUST MATCH `file_with_pop_names`
-## Populations that are in `file_with_pop_names` but not in `competing_pops` and other_left_pops will be treated as right populations.
+right_pops: [""] # Specify right populations in the order intended to be used by qpadm. Must match `file_with_pop_names`a
 output_folder: "" # Path to output folder. Folders that do not exist will be created.
 run_name: "" # Specify a name for the run.
 all_snps: # TRUE/FASLE See parameter allsnps in qpAdm. If TRUE, qpadm_multi will use f4 statistics to perform the calculation. If all_snps = TRUE, population names NEED TO MATCH the .ind file

@@ -104,14 +104,44 @@ if( sum(!(other_left_pops %in% pop_names)) ){
   stop("Stop 8")
 }
 
+right_pops <- input_params$right_pops
+if( sum(!(right_pops %in% pop_names)) ){
+  cat(sprintf( "Population(s) \n %s are not in \n %s \n",
+              paste0(right_pops[!(right_pops %in% pop_names)], collapse = ' '),
+              input_params$file_with_pop_names ))
+  stop("Stop 9")
+}
+
+## Warnigns in case the same population appears in different groups.
 if( target_pop_name %in% competing_pops ){
-  cat(sprintf( "Remove target population: %s from competing populations. \n",
+  cat(sprintf( "Warning: Removed target population: %s from competing populations. \n",
               target_pop_name))
+  competing_pops <- setdiff(competing_pops, target_pop_name)
 }
 
 if( target_pop_name %in% other_left_pops ){
-  cat(sprintf( "Remove target population: %s from left populations. \n",
+  cat(sprintf( "Warning: Removed target population: %s from other_left populations. \n",
               target_pop_name))
+  other_left_pops <- setdiff(other_left_pops, target_pop_name)
+}
+
+if( target_pop_name %in% right_pops ){
+  cat(sprintf( "Warning: Removed target population: %s from right populations. \n",
+              target_pop_name))
+  right_pops <- setdiff(right_pops, target_pop_name)
+}
+
+if( sum(competing_pops %in% right_pops) > 0 ){
+  cat(sprintf("Warning: Removed populations: %s from competing_pops populations. \n",
+              competing_pops[competing_pops %in% right_pops]))
+  competing_pops <- setdiff(competing_pops, right_pops)
+}
+
+if( sum(other_left_pops %in% right_pops) > 0 ){
+  cat(sprintf("Warning: Removed populations: %s from other_left populations. \n",
+              other_left_pops[other_left_pops %in% right_pops]))
+  other_left_pops <- setdiff(other_left_pops, right_pops)
+  
 }
 
 # *** Create output folder
@@ -126,8 +156,8 @@ dir.create( out_dir_for_stats, recursive = TRUE )
 
 all_pops <- unique(pop_names)
 
-## Populations that will never be left or target are going to always be right
-always_right <- all_pops[!(all_pops %in% c(target_pop_name, competing_pops, other_left_pops))] 
+## Right populations need to be explicitly mentioned.
+always_right <- right_pops
 
 # Need to make lists of `left`, `right`, `target` and `excluded` populations.
 # Each line is going to correspond to a seperate model.
@@ -142,7 +172,7 @@ for(i in 1:length(competing_pops)){
     if( i == j ) { next }
     left_all <- c(left_all, list(c(competing_pops[i], other_left_pops)))
     left_all <- c(left_all, list(c(competing_pops[i], other_left_pops)))
-    right_all <- c(right_all, list(c(competing_pops[j], always_right)))
+    right_all <- c(right_all, list(c(always_right, competing_pops[j])))
     right_all <- c(right_all, list(c(always_right)))
     exclude <- c(exclude, c("None", competing_pops[j]))
   }
